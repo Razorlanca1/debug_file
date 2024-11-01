@@ -1,5 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
+
+#define dbgr(x) (return_write(#x, x))
 #define dbg(...) write(__VA_ARGS__); std::cout << " : " << #__VA_ARGS__ << endl;
 
 template<typename F, typename S>
@@ -96,4 +98,17 @@ void write(const T& x, const Ts &... rest) {
     val_write(x);
     std::cout << " | ";
     write(rest...);
+}
+
+template<typename T>
+T return_write(std::string s, const T x) {
+    std::string t;
+    for (int i = 0; i < s.size(); ++i) {
+        if (i + 4 < s.size() && s.compare(i, 5, "dbgr(") == 0) i += 4;
+        t.push_back(s[i]);
+    }
+    std::cout << t << " : ";
+    write(x);
+    std::cout << "\n";
+    return x;
 }
